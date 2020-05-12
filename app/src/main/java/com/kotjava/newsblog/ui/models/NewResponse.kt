@@ -1,4 +1,6 @@
-package com.kotjava.newsblog.ui
+package com.kotjava.newsblog.ui.models
+
+import com.kotjava.newsblog.ui.models.Article
 
 data class NewResponse(
     val articles: List<Article>,

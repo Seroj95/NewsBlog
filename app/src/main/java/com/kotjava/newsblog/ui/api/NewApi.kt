@@ -1,6 +1,6 @@
 package com.kotjava.newsblog.ui.api
 
-import com.kotjava.newsblog.ui.NewResponse
+import com.kotjava.newsblog.ui.models.NewResponse
 import com.kotjava.newsblog.ui.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET
