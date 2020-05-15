@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.item_article_preview.view.*
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private val differtCallback = object : DiffUtil.ItemCallback<Article>() {
+    private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
         }
@@ -23,17 +23,24 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             return oldItem == newItem
         }
     }
-    val differ = AsyncListDiffer(this, differtCallback)
+
+    val differ = AsyncListDiffer(this, differCallback)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         return ArticleViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_article_preview, parent, false)
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_article_preview,
+                parent,
+                false
+            )
         )
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
+    private var onItemClickListener: ((Article) -> Unit)? = null
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
@@ -42,16 +49,20 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             tvSource.text = article.source.name
             tvTitle.text = article.title
             tvDescription.text = article.description
-            tvPublishedAt.text=article.publishedAt
+            tvPublishedAt.text = article.publishedAt
+
             setOnClickListener {
-                onItemClickListener?.let {
-                    it(article)
-                }
+                onItemClickListener?.let { it(article) }
             }
         }
     }
-    private  var onItemClickListener:((Article)->Unit)?=null
-    fun setOnItemClickListener(listner:(Article)->Unit){
-        onItemClickListener=listner
+
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
+        onItemClickListener = listener
     }
+
 }
+
+
+
+
