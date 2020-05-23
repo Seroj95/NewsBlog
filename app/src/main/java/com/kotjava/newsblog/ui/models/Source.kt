@@ -1,4 +1,4 @@
-package com.kotjava.newsblog.ui
+package com.kotjava.newsblog.ui.models
 
 data class Source(
     val id: Any,

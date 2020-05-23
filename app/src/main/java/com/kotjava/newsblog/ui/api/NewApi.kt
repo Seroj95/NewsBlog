@@ -1,6 +1,6 @@
 package com.kotjava.newsblog.ui.api
 
-import com.kotjava.newsblog.ui.NewResponse
+import com.kotjava.newsblog.ui.models.NewsResponse
 import com.kotjava.newsblog.ui.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,7 +14,7 @@ interface NewApi {
         @Query("page")
         pageNumber:Int=1,
         @Query("apiKey")
-        apiKey:String=Constants.API_KEY):Response<NewResponse>
+        apiKey:String=Constants.API_KEY):Response<NewsResponse>
 
 
 
@@ -25,6 +25,6 @@ interface NewApi {
         @Query("page")
         pageNumber:Int=1,
         @Query("apiKey")
-        apiKey:String=Constants.API_KEY):Response<NewResponse>
+        apiKey:String=Constants.API_KEY):Response<NewsResponse>
 
 }
